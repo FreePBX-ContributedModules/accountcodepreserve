@@ -23,7 +23,7 @@ function accountcodepreserve_hookGet_config($engine) {
 	   EXTEN that called this macro (such as a followme) so we use MACRO_EXTEN.
 	*/
 		$priority = 'report3';
-		$ext->splice('macro-user-callerid', 's', $priority,new ext_execif('$["${CALLEE_ACCOUNCODE}" = ""]', 'Set', '__CALLEE_ACCOUNCODE=${DB(AMPUSER/${IF($["${MACRO_CONTEXT}"="macro-exten-vm"]?${ARG2}:${MACRO_EXTEN})}/accountcode)}'));
+		$ext->splice('macro-user-callerid', 's', $priority,new ext_execif('$["${CALLEE_ACCOUNCODE}" = ""]', 'Set', '__CALLEE_ACCOUNCODE=${DB(AMPUSER/${IF($["${ARG6}"="macro-exten-vm"]?${ARG2}:${ARG1})}/accountcode)}'));
 
 	/* check and set the account code in every route (so we don't have to do it in every trunk in case there are fail-over trunks
 	*/
